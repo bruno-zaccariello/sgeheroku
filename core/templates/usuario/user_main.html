@@ -1,0 +1,100 @@
+<html>
+<head>
+	<title id="iframe_title">SGE - Página do Usuário</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" type="text/css" href="/static/css/site.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/usuario/user_main.css">
+
+	<script src="/static/jquery/jquery-3.3.1.min.js"></script>
+	<script src="/static/jquery/jquery.mask.min.js"></script>
+
+	<script src="/static/js/Usuario/user_main.js"></script>
+	
+</head>
+<body id="user_main_body">
+	
+	<div class="um_title">
+		<h1>Página do Usuário</h1>
+	</div>
+	
+	<div onload="checa_alerta()" class="alerta" id="alerta">
+	</div>
+	
+	<div class="page_wrapper">
+	
+		<div class="_wrapper info_wrapper">
+			
+			<h3>Informação Pessoal</h3>
+			
+			<div class="info_margin um_infos">
+				<h3 class="h3_title1">Informações do Usuário</h3>
+			
+				<div class="item_um_info">Nome : {{ user_name }}</div>
+				<div class="item_um_info">Email : {{ user_email }}</div>
+				
+				<div class="item_um_info um_infos_alterar"><a href="javascript:jaiDisplayOn()" class="um_dados_alterar"> Alterar </a></div>
+				
+				<iframe src="/admin/usuario/AlterarInfo" class="janela_AlterarInfo" id="janela_AlterarInfo">
+				</iframe>
+			
+			</div>
+			
+			<div class="info_margin um_mudarsenha">
+				
+				<h3 class="h3_title2">
+					<a href="javascript:jasDisplayOn()" class="um_senha_alterar">Alterar Senha</a>
+				</h3>
+				
+				<iframe src="/admin/usuario/AlterarSenha" class="janela_AlterarSenha" id="janela_AlterarSenha">
+				</iframe>
+				
+			</div>
+			
+			
+		</div>
+		
+		<div class="_wrapper endereco_wrapper">
+			
+			<h3>Endereço</h3>
+			
+			<div class="info_margin endereco_box">
+			
+				<div class="it_end_wrapper">
+					<div class="item_endereco">
+						CEP:<br/>02415-002
+					</div>
+					
+					<div class="item_endereco">
+						Endereço:<br/> R. Bom Jesus da Cantareira, 1969
+					</div>
+				
+					<div class="item_endereco">
+						Complemento:<br/> Apto. XX Bl. Y
+					</div>
+						
+					<div class="item_endereco">
+						Bairro:<br/> Jd. Tremembé
+					</div>
+					
+					<div class="item_endereco">
+						Cidade:<br/> São Paulo
+					</div>
+						
+					<div class="item_endereco">
+						UF: SP
+					</div>
+				</div>
+				
+				<div class="um_endereco_alterar_div"><a href="" class="um_endereco_alterar">Alterar</a></div>
+			</div>
+			
+			<div class="info_margin">
+			</div>
+			
+		</div>
+	
+	</div>
+</body>
+</html>

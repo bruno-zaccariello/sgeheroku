@@ -1,0 +1,56 @@
+<html>
+<header>
+	<title id="iframe_title">SGE - Página Inicial</title>
+	
+	<link rel="stylesheet"  type="text/css" href="/static/css/iframe/iframe_home.css"/>
+	<link rel="stylesheet"  type="text/css" href="/static/css/site.css"/>
+
+</header>
+
+<body>
+	<h1> Página Inicial </h1>
+	
+	<section name="main_section" class="content_box"> 
+		
+		<div class="section stn_est"> 
+			<h3>Fabricação</h3>
+			<table>
+				<thead>
+					<tr>
+						<th> Pedido </th>
+						<th> Status </th>
+						<th> Data Final </th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for pedido in fab_pedidos %}
+					<tr>
+						<td>{{ pedido.name }}</td>
+
+						<td>{{ pedido.fkid_statusfabricacao }}</td>
+
+						{% if pedido.fkid_statusfabricacao.order == 1 %}
+							{% if pedido.is_ready %}
+								<td>{{ pedido.dt_fim_maturacao|date:"d/m/Y H:i" }} Finalizado!</td>
+							{% else %}
+								<td>{{ pedido.dt_fim_maturacao|date:"d/m/Y H:i" }} Maturando...</td>
+							{% endif %}
+						{% else %}
+							<td>Fora da Maturação</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	
+		<div class="section stn_xxx"> ultimas vendas </div>
+		
+		<div class="section stn_xxx"> clientes </div>
+	
+		<div class="section stn_xxx"> extra </div>
+		
+	</section>
+		
+</body>
+</html>

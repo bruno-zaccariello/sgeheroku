@@ -1,0 +1,290 @@
+************* Module core.forms
+core/forms.py:11:0: W0401: Wildcard import core.models (wildcard-import)
+core/forms.py:11:0: W0614: Unused import Cotacaocompra from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Entrega from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Formapagamento from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Itemcompra from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Itemcotacao from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Itemvenda from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Linhavenda from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Movimentacao from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Pedidocompra from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Pedidovenda from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Statuscompra from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Statusvenda from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Usuario from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import Usuarioalteracao from wildcard import (unused-wildcard-import)
+core/forms.py:11:0: W0614: Unused import models from wildcard import (unused-wildcard-import)
+************* Module core.admin
+core/admin.py:2:45: C0303: Trailing whitespace (trailing-whitespace)
+core/admin.py:7:0: W0401: Wildcard import core.models (wildcard-import)
+core/admin.py:7:0: W0614: Unused import dt from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Cotacaocompra from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Entrega from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Formapagamento from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Itemcompra from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Itemcotacao from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Itemvenda from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Linhavenda from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Movimentacao from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Pedidocompra from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Pedidovenda from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Statuscompra from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Statusvenda from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Usuario from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import Usuarioalteracao from wildcard import (unused-wildcard-import)
+core/admin.py:7:0: W0614: Unused import models from wildcard import (unused-wildcard-import)
+************* Module core.views
+core/views.py:9:0: W0401: Wildcard import core.forms (wildcard-import)
+core/views.py:10:0: W0401: Wildcard import core.models (wildcard-import)
+core/views.py:11:0: W0401: Wildcard import core.funcoes (wildcard-import)
+core/views.py:12:0: W0401: Wildcard import core.my_views.clientes (wildcard-import)
+core/views.py:13:0: W0401: Wildcard import core.my_views.produtos (wildcard-import)
+core/views.py:14:0: W0401: Wildcard import core.my_views.usuario (wildcard-import)
+core/views.py:15:0: W0401: Wildcard import core.my_views.producao (wildcard-import)
+core/views.py:16:0: W0401: Wildcard import core.custom.ajax_requests (wildcard-import)
+core/views.py:91:12: W0702: No exception type(s) specified (bare-except)
+core/views.py:81:26: E1121: Too many positional arguments for function call (too-many-function-args)
+core/views.py:9:0: W0614: Unused import dt from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import lf from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import CategoriaprodutoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import UnidademedidaForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import CadProdutoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import ProdutoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import FormulaprodutoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import FormulaCompletaForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import FormulamateriaForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import MateriaPrimaForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import UpdateInfoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import EnderecoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import TelefoneForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import PessoaForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import PessoaRapidoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import PedidofabricacaoForm from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import forms from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import User from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Categoriaproduto from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Cotacaocompra from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Endereco from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Entrega from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Formapagamento from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Formulaproduto from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Itemcompra from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Itemcotacao from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Itemvenda from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Linhavenda from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Materiaprima from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Formulamateria from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Movimentacao from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Pedidocompra from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Pedidovenda from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Pessoa from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Produto from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Statuscompra from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Statusfabricacao from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Statusvenda from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Telefone from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Unidademedida from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Usuario from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import Usuarioalteracao from wildcard import (unused-wildcard-import)
+core/views.py:9:0: W0614: Unused import models from wildcard import (unused-wildcard-import)
+core/views.py:11:0: W0614: Unused import arruma_url_page from wildcard import (unused-wildcard-import)
+core/views.py:11:0: W0614: Unused import filtra_produtos from wildcard import (unused-wildcard-import)
+core/views.py:11:0: W0614: Unused import filtra_clientes from wildcard import (unused-wildcard-import)
+core/views.py:11:0: W0614: Unused import paginar from wildcard import (unused-wildcard-import)
+core/views.py:11:0: W0614: Unused import Q from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import cadastrar_cliente from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import cadastro_rapido_cliente from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import lista_clientes from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import deletar_cliente from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import HttpResponseRedirect from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import Paginator from wildcard import (unused-wildcard-import)
+core/views.py:12:0: W0614: Unused import transaction from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import cadastrar_produto from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import product_page from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import formula_produto from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import lista_produtos from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import deletar_produto from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import cadastrar_materia from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import lista_materia from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import lista_categorias from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import deletar_categoria from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import lista_unidades from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import deletar_unidade from wildcard import (unused-wildcard-import)
+core/views.py:13:0: W0614: Unused import inlineformset_factory from wildcard import (unused-wildcard-import)
+core/views.py:14:0: W0614: Unused import change_pw_form from wildcard import (unused-wildcard-import)
+core/views.py:14:0: W0614: Unused import update_user_form from wildcard import (unused-wildcard-import)
+core/views.py:14:0: W0614: Unused import user_main from wildcard import (unused-wildcard-import)
+core/views.py:14:0: W0614: Unused import update_session_auth_hash from wildcard import (unused-wildcard-import)
+core/views.py:14:0: W0614: Unused import PasswordChangeForm from wildcard import (unused-wildcard-import)
+core/views.py:15:0: W0614: Unused import lista_formula from wildcard import (unused-wildcard-import)
+core/views.py:15:0: W0614: Unused import pagina_formula from wildcard import (unused-wildcard-import)
+core/views.py:15:0: W0614: Unused import deletar_formula from wildcard import (unused-wildcard-import)
+core/views.py:15:0: W0614: Unused import nova_fabricacao from wildcard import (unused-wildcard-import)
+core/views.py:15:0: W0614: Unused import editar_fabricacao from wildcard import (unused-wildcard-import)
+core/views.py:16:0: W0614: Unused import ajax_nova_fabricacao from wildcard import (unused-wildcard-import)
+core/views.py:16:0: W0614: Unused import ajax_checa_materias from wildcard import (unused-wildcard-import)
+core/views.py:16:0: W0614: Unused import load_json from wildcard import (unused-wildcard-import)
+core/views.py:16:0: W0614: Unused import JsonResponse from wildcard import (unused-wildcard-import)
+************* Module core.management.commands.initadmin
+core/management/commands/initadmin.py:1:0: C0111: Missing module docstring (missing-docstring)
+core/management/commands/initadmin.py:3:0: W0401: Wildcard import core.models (wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import dt from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Cotacaocompra from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Endereco from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Entrega from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Formapagamento from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Formulaproduto from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Itemcompra from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Itemcotacao from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Itemvenda from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Linhavenda from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Formulamateria from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Movimentacao from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Pedidocompra from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Pedidofabricacao from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Pedidovenda from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Pessoa from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Statuscompra from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Statusvenda from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Telefone from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Usuario from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import Usuarioalteracao from wildcard import (unused-wildcard-import)
+core/management/commands/initadmin.py:3:0: W0614: Unused import models from wildcard import (unused-wildcard-import)
+
+
+Report
+======
+641 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |11     |11         |=          |90.91       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |81     |81         |=          |51.85       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |19     |19         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |14     |14         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    core 
+      \-models (core.funcoes)
+    django 
+      \-apps (core.apps)
+      \-contrib 
+      | \-admin (core.admin)
+      | \-auth 
+      |   \-models (core.forms,core.management.commands.initadmin)
+      \-core 
+      | \-management 
+      |   \-base (core.management.commands.initadmin)
+      \-db 
+      | \-models (core.funcoes,core.models)
+      \-forms (core.forms)
+      \-shortcuts (core.views)
+    localflavor 
+      \-br 
+        \-forms (core.forms)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |775    |62.91 |NC       |NC         |
++----------+-------+------+---------+-----------+
+|docstring |155    |12.58 |NC       |NC         |
++----------+-------+------+---------+-----------+
+|comment   |47     |3.81  |NC       |NC         |
++----------+-------+------+---------+-----------+
+|empty     |255    |20.70 |NC       |NC         |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |2      |2        |=          |
++-----------+-------+---------+-----------+
+|refactor   |0      |0        |=          |
++-----------+-------+---------+-----------+
+|warning    |146    |146      |=          |
++-----------+-------+---------+-----------+
+|error      |1      |1        |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++-----------------------------------+-------+--------+---------+-----------+
+|module                             |error  |warning |refactor |convention |
++===================================+=======+========+=========+===========+
+|core.views                         |100.00 |61.64   |0.00     |0.00       |
++-----------------------------------+-------+--------+---------+-----------+
+|core.management.commands.initadmin |0.00   |15.75   |0.00     |50.00      |
++-----------------------------------+-------+--------+---------+-----------+
+|core.admin                         |0.00   |11.64   |0.00     |50.00      |
++-----------------------------------+-------+--------+---------+-----------+
+|core.forms                         |0.00   |10.96   |0.00     |0.00       |
++-----------------------------------+-------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------------------+------------+
+|message id             |occurrences |
++=======================+============+
+|unused-wildcard-import |134         |
++-----------------------+------------+
+|wildcard-import        |11          |
++-----------------------+------------+
+|trailing-whitespace    |1           |
++-----------------------+------------+
+|too-many-function-args |1           |
++-----------------------+------------+
+|missing-docstring      |1           |
++-----------------------+------------+
+|bare-except            |1           |
++-----------------------+------------+
+
+
+
+
+------------------------------------------------------------------
+Your code has been rated at 7.61/10 (previous run: 7.61/10, +0.00)
+
