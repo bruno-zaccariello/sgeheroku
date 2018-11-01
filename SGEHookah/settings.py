@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'ajax_select'
 ]
 
 MIDDLEWARE = [
@@ -76,14 +77,18 @@ WSGI_APPLICATION = 'SGEHookah.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+    # 'other': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'admin123',
+    #     'HOST': 'db',
+    #     'PORT': 5432,
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd78viglposf59u',
-        'USER': 'mbilirrobgtdfa',
-        'PASSWORD': '3e19ce7d0de8ccf1fee53807821556561531a80d86c92b9064cbcab9ea80fff9',
-        'HOST': 'ec2-174-129-18-98.compute-1.amazonaws.com',
-        'PORT': 5432,
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
@@ -135,3 +140,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/media/')
 STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
+LOGOUT_REDIRECT_URL = 'accounts/login/'
