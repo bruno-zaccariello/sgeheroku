@@ -76,18 +76,18 @@ WSGI_APPLICATION = 'SGEHookah.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    # 'other': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'postgres',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'admin123',
-    #     'HOST': 'db',
-    #     'PORT': 5432,
-    # },
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'other': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST': os.getenv('HOST'),
+        'PORT': 5432,
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 
