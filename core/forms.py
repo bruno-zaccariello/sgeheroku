@@ -3,14 +3,14 @@
 """
 
 import datetime as dt
-
 import localflavor.br.forms as lf
+
+from django.forms.models import modelformset_factory
+from django.forms.models import BaseModelFormSet
 from django import forms
 from django.contrib.auth.models import User
 
 import core.models as model
-import ajax_select.fields as custom
-from ajax_select import make_ajax_field
 
 class CategoriaprodutoForm(forms.ModelForm):
     """ Formulário de Categoria de Produto """
@@ -332,15 +332,14 @@ class PedidofabricacaoForm(forms.ModelForm):
 class PedidoVendaForm(forms.ModelForm):
     """ Formulário do pedido de venda """
 
-    fkid_cliente =make_ajax_field(
-        model.Pessoa, 
-        'nomecompleto_razaosocial', 
-        'cliente',
-        required=True)
     dt_pedido = forms.DateTimeField()
     dt_pagamento = forms.DateTimeField()
     dt_preventrega = forms.DateTimeField()
-    pago = forms.BooleanField()
+    pago = forms.BooleanField(
+        label="Pago",
+        required=False,
+        initial=False,
+    )
 
     class Meta:
         model = model.Pedidovenda
@@ -349,9 +348,6 @@ class PedidoVendaForm(forms.ModelForm):
 
 class ItemVendaForm(forms.ModelForm):
     """ Formulário de item de venda """
-
-    # fkid_produto = custom.AutoCompleteSelectField('produto', help_text=None)
-    fkid_produto = make_ajax_field(model.Produto, 'nomeproduto', 'produto')
 
     class Meta:
         model = model.Itemvenda

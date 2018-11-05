@@ -1,6 +1,4 @@
-$('[name*=fkid_produto]').on('change', function(){
-    let id = 1
-    let row = $(this).parent().parent()
+function updatePreco(id, row) {
     postAPI(
         '/api/get_produto/',
         {'produto':id},
@@ -11,4 +9,18 @@ $('[name*=fkid_produto]').on('change', function(){
             )
         }
         )
+}
+
+$('[name*=fkid_produto]').on('change', function(){
+    let row = $(this).parent().parent();
+    updatePreco(this.value, row);
+})
+
+$('[name*=quantidade]').keyup(function() {
+    let row = $(this).parent().parent();
+    let multiplier = this.value
+    let unit = $(row).find('[name*=vl_unitario]').val()
+    $(row).find('[name*=vl_total]').val(
+        (multiplier*unit).toFixed(2)
+    )
 })

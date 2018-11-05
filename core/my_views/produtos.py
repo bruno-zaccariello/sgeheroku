@@ -5,22 +5,43 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
 from django.db import transaction
 from django.forms import inlineformset_factory
 from django.urls import reverse
+from django.views import View
+from django.views.generic import TemplateView
 
 from core.funcoes import arruma_url_page, filtra_produtos
-from core.models import *
-from core.forms import *
+import core.models as models
+import core.forms as forms
 
+class CadastrarProduto(TemplateView):
+    """ Página de Cadastro de Produto """
 
-@login_required(login_url="/admin")
-def cadastrar_produto(request):
-    """ Página para cadastrar um produto novo """
-    success = request.GET.get('success', False)
-    if request.POST:
-        form = CadProdutoForm(request.POST, request.FILES, label_suffix='')
+    template = "iframe/produtos/cadastrar_produto.html"
+
+    @method_decorator(login_required)
+    def get(self, request):
+        success = request.GET.get('success', False)
+        form = forms.CadProdutoForm(label_suffix='')
+        form_n = [field for field in form]
+        form_col1 = form_n[:6]
+        form_col2 = form_n[6:12]
+        form_other = form_n[12:]
+        context = {
+            "form": form,
+            "form_col1": form_col1,
+            "form_col2": form_col2,
+            "form_other": form_other,
+            "success": request.GET.get('success'),
+        }
+        return render(request, self.template, context)
+
+    @method_decorator(login_required)
+    def post(self, request):
+        form = forms.CadProdutoForm(request.POST, request.FILES, label_suffix='')
         if form.is_valid():
             form = form.save(commit=False)
 
@@ -29,87 +50,90 @@ def cadastrar_produto(request):
                 form.fotoproduto = 'default_product.png'
 
             form.save()
-            url = str(request.path_info) + str('?success=True')
-            return HttpResponseRedirect(url)
-    else:
-        form = CadProdutoForm(label_suffix='')
-
-    # Slice form for usage in template
-    form_n = [field for field in form]
-    form_col1 = form_n[:6]
-    form_col2 = form_n[6:12]
-    form_other = form_n[12:]
-
-    context = {
-        "form": form,
-        "form_col1": form_col1,
-        "form_col2": form_col2,
-        "form_other": form_other,
-        "success": success
-    }
-    return render(request, "iframe/produtos/cadastrar_produto.html", context)
+            return HttpResponseRedirect(request.path_info+'?success=True')
+        form_n = [field for field in form]
+        form_col1 = form_n[:6]
+        form_col2 = form_n[6:12]
+        form_other = form_n[12:]
+        context = {
+            "form": form,
+            "form_col1": form_col1,
+            "form_col2": form_col2,
+            "form_other": form_other
+        }
+        return render(request, self.template, context)
 
 
-@login_required(login_url="/admin")
-def product_page(request, id_produto):
-    """ Página do produto """
+class PaginaProduto(TemplateView):
+    """ Página Produto """
 
-    # Tenta buscar o produto requerido
-    # Caso falhe retorna à página inicial
-    try:
-        produto = Produto.objects.get(pkid_produto=id_produto)
-    except:
-        return HttpResponseRedirect('/admin/home')
+    template = "iframe/produtos/pagina_produto.html"
+    
+    def produto(self, id_produto=int):
+        try:
+            return models.Produto.objects.get(pkid_produto=id_produto)
+        except:
+            return False
 
-    if request.POST:
-        form = ProdutoForm(request.POST, request.FILES, instance=produto)
+    def success(self, request):
+        return request.GET.get('success', 'False')
+
+    def get(self, request, id_produto):
+        produto = self.produto(id_produto)
+        form = forms.ProdutoForm(instance=produto)
+
+        # For Custom Form fields
+        form_page = []
+        for field in form:
+            form_page.append(field)
+        self.context = {
+            "produto": produto,
+            "form": form,
+            "form_page": form_page[:-2],
+            "success": success(request)
+        }
+        return render(request, self.template, self.context)
+
+    def post(self, request, id_produto):
+        produto = self.produto(id_produto)
+        form = forms.ProdutoForm(
+            request.POST, 
+            request.FILES, 
+            instance=produto)
 
         # Checa se o formulário é valido e se foi alterado
         if form.is_valid() and form.has_changed():
             form.save()
             return HttpResponseRedirect(request.path_info)
-    else:
-        form = ProdutoForm(instance=produto)
-
-    # For Custom Form fields
-    form_page = []
-    for field in form:
-        form_page.append(field)
-
-    context = {
-        "produto": produto,
-        "form": form,
-        "form_page": form_page[:-2]
-    }
-    return render(request, "iframe/produtos/pagina_produto.html", context)
+        return HttpResponseRedirect(request.path_info)
 
 
 @login_required(login_url="/admin")
 def formula_produto(request, id_produto):
     """ Página da fórmula de um produto """
 
-    produto = Produto.objects.get(pkid_produto=id_produto)
+    produto = models.Produto.objects.get(pkid_produto=id_produto)
 
     # Tenta pegar uma formula já existente para aquele produto
     try:
-        formula = Formulaproduto.objects.filter(
+        formula = models.Formulaproduto.objects.filter(
             hide=False).get(fkid_produto=id_produto)
     except:
         formula = None
 
     success = request.GET.get('success', False)
     formset_materias = inlineformset_factory(
-        Formulaproduto,
-        Formulamateria,
+        models.Formulaproduto,
+        models.Formulamateria,
         extra=0,
         min_num=1,
         exclude=['hide'],
-        form=FormulamateriaForm)
+        form=forms.FormulamateriaForm)
 
     if request.POST:
         with transaction.atomic():
             # Formulario da formula
-            form_formula = FormulaprodutoForm(request.POST, instance=formula)
+            form_formula = forms.FormulaprodutoForm(request.POST, instance=formula)
             forms_materia = formset_materias(request.POST, instance=formula)
 
             if form_formula.is_valid():
@@ -126,7 +150,7 @@ def formula_produto(request, id_produto):
                 url = str(request.path_info) + str('?success=True')
                 return HttpResponseRedirect(url)
     else:
-        form_formula = FormulaprodutoForm(instance=formula)
+        form_formula = forms.FormulaprodutoForm(instance=formula)
         forms_materia = formset_materias(instance=formula)
 
     context = {
@@ -167,7 +191,7 @@ def deletar_produto(request, id_produto):
     """ API para deletar um produto """
 
     try:
-        produto = Produto.objects.get(pkid_produto=id_produto)
+        produto = models.Produto.objects.get(pkid_produto=id_produto)
         produto.hide = True
         produto.save()
     except:
@@ -181,13 +205,13 @@ def cadastrar_materia(request):
 
     success = request.GET.get('success', False)
     if request.POST:
-        form = MateriaPrimaForm(request.POST)
+        form = forms.MateriaPrimaForm(request.POST)
         if form.is_valid():
             form.save()
             url = str(request.path_info) + str('?success=True')
             return HttpResponseRedirect(url)
     else:
-        form = MateriaPrimaForm()
+        form = forms.MateriaPrimaForm()
     context = {
         'form': form,
         'success': success
@@ -202,7 +226,7 @@ def lista_materia(request):
     deletado = request.GET.get('deleted', False)
     page = int(request.GET.get('page', 1))
 
-    lista_materias = Materiaprima.objects.filter(hide=False)
+    lista_materias = models.Materiaprima.objects.filter(hide=False)
     paginas = Paginator(lista_materias, 10)
     materias = paginas.get_page(page)
 
@@ -218,18 +242,18 @@ def lista_materia(request):
 def editar_materia(request, id_materia):
 
     try:
-        materia = Materiaprima.objects.get(pkid_materiaprima = id_materia)
+        materia = models.Materiaprima.objects.get(pkid_materiaprima = id_materia)
     except:
         return HttpResponseRedirect('/admin/home')
 
     if request.POST:
-        form = MateriaPrimaForm(request.POST, instance=materia)
+        form = forms.MateriaPrimaForm(request.POST, instance=materia)
 
         if form.is_valid() and form.has_changed():
             form.save()
             return HttpResponseRedirect(request.path_info)
     else:
-        form = MateriaPrimaForm(instance=materia)
+        form = forms.MateriaPrimaForm(instance=materia)
 
     context = {
         "materia": materia,
@@ -239,7 +263,7 @@ def editar_materia(request, id_materia):
 
 @login_required(login_url="/admin")
 def deletar_materia(request, id_materia):
-    materia = Materiaprima.objects.get(pkid_materiaprima=id_materia)
+    materia = models.Materiaprima.objects.get(pkid_materiaprima=id_materia)
     materia.hide = True
     materia.save()
     return HttpResponseRedirect(reverse('lista_materia'))
@@ -254,15 +278,15 @@ def lista_categorias(request):
     page = int(request.GET.get('page', 1))
 
     if request.POST:
-        form = CategoriaprodutoForm(request.POST)
+        form = forms.CategoriaprodutoForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(request.path_info)
     else:
-        form = CategoriaprodutoForm()
+        form = forms.CategoriaprodutoForm()
 
     # Funções para gerar páginas
-    categorias = Categoriaproduto.objects.filter(
+    categorias = models.Categoriaproduto.objects.filter(
         hide=False).order_by('pkid_categoria')
     paginas = Paginator(categorias, 10)
     categorias = paginas.get_page(page)
@@ -281,7 +305,7 @@ def lista_categorias(request):
 def deletar_categoria(request, id_categoria):
     """ API Para deletar categoria """
 
-    categoria = Categoriaproduto.objects.get(pkid_categoria=id_categoria)
+    categoria = models.Categoriaproduto.objects.get(pkid_categoria=id_categoria)
     categoria.hide = True
     categoria.save()
     return HttpResponseRedirect('/iframe/produtos/categorias?success=True')
@@ -296,10 +320,10 @@ def lista_unidades(request):
     page = int(request.GET.get('page', 1))
 
     if request.POST:
-        form = UnidademedidaForm(request.POST)
+        form = forms.UnidademedidaForm(request.POST)
         if form.is_valid():
             try:
-                exists = Unidademedida.objects.get(
+                exists = models.Unidademedida.objects.get(
                     unidademedida=form.cleaned_data['unidademedida'])
                 exists.hide = False
                 exists.save()
@@ -307,10 +331,10 @@ def lista_unidades(request):
                 form.save()
             return HttpResponseRedirect(request.path_info)
     else:
-        form = UnidademedidaForm()
+        form = forms.UnidademedidaForm()
 
     # Cria uma lista com as unidades visiveis (hide=False)
-    unidades = Unidademedida.objects.filter(
+    unidades = models.Unidademedida.objects.filter(
         hide=False).order_by('pkid_unidademedida')
     paginas = Paginator(unidades, 10)
     unidades = paginas.get_page(page)
@@ -329,7 +353,7 @@ def lista_unidades(request):
 def deletar_unidade(request, id_unidade):
     """ API para deletar uma unidade de medida """
 
-    unidade = Unidademedida.objects.get(pkid_unidademedida=id_unidade)
+    unidade = models.Unidademedida.objects.get(pkid_unidademedida=id_unidade)
     unidade.hide = True
     unidade.save()
     return HttpResponseRedirect('/iframe/produtos/unidades?success=True')

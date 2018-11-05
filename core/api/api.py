@@ -30,11 +30,11 @@ def ajax_nova_fabricacao(request):
                 id_materia = item['fkid_materiaprima_id']
                 unidade = item['unidade_id']
                 # Pega o nome da materiaprima invés do id
-                item['fkid_materiaprima_id'] = Materiaprima.objects.get(
+                item['fkid_materiaprima_id'] = models.Materiaprima.objects.get(
                     pkid_materiaprima=id_materia
                 ).materiaprima
                 # Pega o nome da unidademedida invés do id
-                item['unidade_id'] = Unidademedida.objects.get(
+                item['unidade_id'] = models.Unidademedida.objects.get(
                     pkid_unidademedida=unidade
                 ).unidademedida
 
@@ -84,6 +84,19 @@ def get_produto(request):
         rget = load_json(request.body)
         produto = models.Produto.objects.filter(
                 pkid_produto = rget.get('produto')
+            )
+        data = serialize(
+            'json',
+            produto
+        )
+        return JsonResponse(data, safe=False)
+
+def search_produto(request):
+    data = {'produto':False}
+    if request.body:
+        rget = load_json(request.body)
+        produto = models.Produto.objects.filter(
+                nomeproduto = rget.get('produto')
             )
         data = serialize(
             'json',

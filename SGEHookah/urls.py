@@ -16,7 +16,6 @@ Including another URLconf
 
 from django.conf import settings
 from django.conf.urls.static import static
-from ajax_select import urls as ajax_select_urls
 
 from django.contrib import admin
 from django.urls import include, path
@@ -40,8 +39,8 @@ urls_clientes = [
 ]
 
 urls_produtos = [
-    path('cadastrar/', view.cadastrar_produto, name="cadastrar_produto"),
-    path('<int:id_produto>/', view.product_page, name="product_page"),
+    path('cadastrar/', view.CadastrarProduto.as_view(), name="cadastrar_produto"),
+    path('<int:id_produto>/', view.PaginaProduto.as_view(), name="product_page"),
     path('<int:id_produto>/formula/', view.formula_produto, name="formula_produto"),
     path('lista/', view.lista_produtos, name="lista_produtos"),
     path('deletar/<int:id_produto>/', view.deletar_produto, name="deletar_produto"),
@@ -70,6 +69,7 @@ urls_producao = [
 ]
 
 urls_vendas = [
+    path('', vendas.ListaVendas.as_view(), name="lista_vendas"),
     path('nova/', vendas.NovaVenda.as_view(), name="nova_venda"),
 ]
 
@@ -77,6 +77,7 @@ api = [
     path('nova_fabricacao/', view.ajax_nova_fabricacao, name="ajax_nova_fabricacao"),
     path('checa_materias/', view.ajax_checa_materias, name="ajax_checa_materias"),
     path('get_produto/', view.get_produto, name="get_produto"),
+    path('search_produto/', view.search_produto, name="search_produto"),
 ]
 
 urlpatterns = [
@@ -94,7 +95,6 @@ urlpatterns = [
     path('iframe/vendas/calcula_frete/', view.calcula_frete, name="calcula_frete"),
 
     path('api/', include(api)),
-    path('ajax_select/', include(ajax_select_urls))
 ]
 
 if settings.DEBUG is True:
