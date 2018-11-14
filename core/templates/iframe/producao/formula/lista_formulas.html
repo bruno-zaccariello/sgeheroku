@@ -9,13 +9,11 @@
     <link rel="stylesheet"  type="text/css" href="/static/css/my_css/dft_table.css"/>
     <!-- Page specific -->
     <link rel="stylesheet"  type="text/css" href="/static/css/patterns/lista.css"/>
-    <link rel="stylesheet"  type="text/css" href="/static/css/iframe/producao/formulas/lista_formula.css"/>
     
     <script src="/static/jquery/jquery-3.3.1.min.js"></script>
     <script src="/static/jquery/jquery.mask.min.js"></script>
 
     <script src="/static/js/patterns/lista.js"></script>
-    <script src="/static/js/iframe/producao/formulas/lista_formulas.js"></script>
     <script src="/static/js/utils.js"></script>
 </head>
 
@@ -64,9 +62,9 @@
 
         <div class="opt_content">
             <div class="divCadastrar">
-                <a href="/iframe/producao/formulas/0">
+                <a href="{% url 'lista_produtos' %}">
                     <button class="btMain btCadastrar">
-                    CADASTRAR FÓRMULA
+                    VER PRODUTOS
                     </button>
                 </a>
             </div>
@@ -131,7 +129,8 @@
                         </div>
                     </a>
 
-                    <a href="javascript:confirmaJanelaOn('{{ formula.pkid_formula }}')" class='vertical opt_bt'>
+                    {% url 'deletar_formula' id_formula=formula.pkid_formula as url %}
+                    <a href="javascript:confirmaJanelaOn('{{ url }}')" class='vertical opt_bt'>
                         <div class='opt_bt opt_delete'>
                         </div>
                     </a>
