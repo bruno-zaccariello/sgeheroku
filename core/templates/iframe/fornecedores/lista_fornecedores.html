@@ -1,17 +1,13 @@
 <html>
 
 <head>
-	<title id="iframe_title">SGE - Lista de Produtos</title>
+	<title id="iframe_title">SGE - Lista de Fornecedores</title>
     
     <!-- Site defaults -->
 	<link rel="stylesheet"  type="text/css" href="/static/css/site.css"/>
     <!-- Page specific -->
     <link rel="stylesheet"  type="text/css" href="/static/css/patterns/lista.css"/>
-	<link rel="stylesheet"  type="text/css" href="/static/css/iframe/produtos/lista_produtos.css"/>
-
-    <script src="/static/jquery/jquery-3.3.1.min.js"></script>
-    <script src="/static/jquery/jquery.mask.min.js"></script>
-
+	
     <script src="/static/js/patterns/lista.js"></script>
     <script src="/static/js/utils.js"></script>
 </head>
@@ -28,10 +24,10 @@
 		</div>
 		
 		<div class="overlay_content_success">
-			<h2 class="overlay_title_success">Produto Deletado com Sucesso</h2>
+			<h2 class="overlay_title_success">Fornecedor Deletado com Sucesso</h2>
 			
 			<div class="bt_wrapper">
-				<a href="{% url 'lista_produtos' %}"><button class="btMain btConfirmar">Continuar</button></a>
+				<a href="{% url 'lista_fornecedores' %}"><button class="btMain btConfirmar">Continuar</button></a>
 			</div>
 			
 		</div>
@@ -47,7 +43,7 @@
 		</div>
 		
 		<div class="overlay_content">
-			<h2 class="overlay_title">Tem certeza que deseja deletar esse produto?</h2>
+			<h2 class="overlay_title">Tem certeza que deseja deletar esse fornecedor?</h2>
 			
 			<div class="bt_wrapper">
 				<a href="javascript:confirmaJanelaOff()"><button class="btMain btCancelar">Cancelar</button></a>
@@ -62,81 +58,59 @@
     <section class="content">
 
         {% comment %} <div class="search_opts_wrapper white">
-            SESSÃO PARA FILTRAR PRODUTOS (EM CONSTRUCAO)
+            SESSÃO PARA FILTRAR FORNECEDORES (EM CONSTRUCAO)
         </div> {% endcomment %}
 
         <div class="opt_content">
             <div class="divCadastrar">
-                <a href="/iframe/produtos/cadastrar">
+                <a href="{% url 'cadastrar_fornecedor' %}">
                     <button class="btMain btCadastrar">
-                    CADASTRAR PRODUTO
+                    CADASTRAR FORNECEDOR
                     </button>
                 </a>
             </div>
         </div>
-
+        
         <table>
 
             <thead>
                 <tr>
-                    <th>Foto</th>
+                    <th>Cód.</th>
 
-                    <th>Código</th>
-                    
-                    <th>Preço</th>
-                    
-                    <th>Nome do Produto</th>
-                    
+                    <th>Nome do Fornecedor</th>
+
                     <th>Opções</th>
                 </tr>
             </thead>
 
-            <tbody>
-            {% for produto in pagina %}
 
+            <tbody>
+            {% for fornecedor in pagina %}
                 <tr>
 
-                    <td>
-                        <div class="img_div_produto">
-                            <img class="img_produto" src="{{ produto.fotoproduto.url }}" alt="Foto do Produto"/>
-                        </div>
-                    </td>
-
-                    
                     <td class="txt_center">
-                        {{ produto.codproduto }}
+                        {{ fornecedor.pkid_pessoa }}
                     </td>
 
-                    
-                    <td class="txt_center">
-                        R${{ produto.preco }}
-                    </td>
-
-                    
                     <td class="lft_padding">
-                        {{ produto.nomeproduto }}
+                        {{ fornecedor.nomecompleto_razaosocial }}
                     </td>
-                    
+                
                     <td>
-                        <div class="opts_holder flex_row_nw">
 
-                            <a href="/iframe/produtos/{{ produto.pkid_produto }}" title="editar" class='vertical opt_bt'>
+                        <div class="opts_holder flex_row_nw">
+                            <a href="/iframe/fornecedores/{{ fornecedor.pkid_pessoa }}" title="editar" class='vertical opt_bt'>
                                 <div class="opt_bt opt_edit">
                                 </div>
                             </a>
 
-                            <a href="/iframe/produtos/{{ produto.pkid_produto }}/formula" title="formula" class="vertical opt_bt">
-                                <div class="opt_bt opt_formula">
-                                </div>
-                            </a>
-
-                            {% url 'deletar_produto' produto.pkid_produto as url %}
+                            {% url "deletar_fornecedor" fornecedor.pkid_pessoa as url %}
                             <a href="javascript:confirmaJanelaOn('{{ url }}')" title="deletar" class='vertical opt_bt'>
                                 <div class="opt_bt opt_delete">
                                 </div>
                             </a>
-
                         </div>
+
                     </td>
 
                 </tr>
@@ -145,25 +119,24 @@
         </table>
 
         <div class="divPaginas">
-
-            {% if pagina.has_previous %}
+            {% if fornecedores.has_previous %}
                 <a class="linkPagina bee" href="{{ url }}&page=1"><<</a>
                 <a class="linkPagina white"> </a>
 
-                <a class="linkPagina bee" href="{{ url }}&page={{ pagina.previous_page_number }}"> {{ pagina.previous_page_number }}</a>
+                <a class="linkPagina bee" href="{{ url }}&page={{ fornecedores.previous_page_number }}"> {{ fornecedores.previous_page_number }}</a>
             {% else %}
                 <a class="linkPagina bee" href=""><<</a>
                 <a class="linkPagina white"> </a>
 
             {% endif %}
 
-            <a class="linkPagina bee current">{{ pagina.number }}</a>
+            <a class="linkPagina bee current">{{ fornecedores.number }}</a>
 
-            {% if pagina.has_next %}
-                <a class="linkPagina bee" href="{{ url }}&page={{ pagina.next_page_number }}">{{ pagina.next_page_number }}</a>
+            {% if fornecedores.has_next %}
+                <a class="linkPagina bee" href="{{ url }}&page={{ fornecedores.next_page_number }}">{{ fornecedores.next_page_number }}</a>
 
                 <a class="linkPagina white"> </a>
-                <a class="linkPagina bee" href="{{ url }}&page={{ pagina.paginator.num_pages }}">>></a>
+                <a class="linkPagina bee" href="{{ url }}&page={{ fornecedores.paginator.num_pages }}">>></a>
             {% else %}
 
                 <a class="linkPagina white"> </a>

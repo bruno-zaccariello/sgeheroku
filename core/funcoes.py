@@ -2,6 +2,7 @@
     Módulo auxiliar com funções para views e outros
 """
 
+from django.core.serializers import serialize
 # from xml.etree import ElementTree
 # import requests
 
@@ -9,8 +10,8 @@ from django.db.models import Q
 
 from core.models import Produto, Pessoa
 
-__all__ = ['filtra_produtos', 'filtra_clientes',
-           'paginar', 'arruma_url_page']
+__all__ = ['filtra_produtos', 'filtra_pessoas',
+           'paginar', 'arruma_url_page', 'JSON']
 
 
 def arruma_url_page(request):
@@ -34,13 +35,13 @@ def filtra_produtos(codigo, palavra_chave):
     ).order_by('codproduto')
 
 
-def filtra_clientes(codigo, nome):
+def filtra_pessoas(codigo, palavraChave):
     """ Função para fazer a filtragem de clientes """
 
     return Pessoa.objects.filter(
-        Q(nomecompleto_razaosocial__icontains=nome) |
-        Q(apelido_nomefantasia=nome) |
-        Q(email=nome),
+        Q(nomecompleto_razaosocial__icontains=palavraChave) |
+        Q(apelido_nomefantasia=palavraChave) |
+        Q(email=palavraChave),
         hide=False,
         pkid_pessoa__icontains=codigo
     ).order_by('pkid_pessoa')
@@ -62,6 +63,8 @@ def paginar(lista):
         page_content.pop(page)
     return page_content
 
+def JSON(object):
+    return serialize('json', object)
 
 # def calcula_frete(
 #     nCdEmpresa='',

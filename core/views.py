@@ -14,6 +14,7 @@ from core.my_views.clientes import *
 from core.my_views.produtos import *
 from core.my_views.usuario import *
 from core.my_views.producao import *
+from core.my_views.fornecedores import *
 from core.api.api import *
 
 # Create your views here.
@@ -29,9 +30,22 @@ def index(request):
 
 @login_required(login_url="/admin")
 def home(request):
-    """ Página Inicial """
+    """ Página Principal do sistema
+        Segura o iframe
+    """
     
-    return render(request, "base.html")
+    statusVendas = [
+        stat.descricao for stat in models.Statusvenda.objects
+        .all()
+        .order_by('order')
+    ]
+    print(statusVendas)
+
+    context = {
+        "statusVendas":statusVendas,
+    }
+
+    return render(request, "base.html", context)
 
 
 @login_required(login_url="/admin")
@@ -42,7 +56,7 @@ def redirect_home(request):
 
 @login_required(login_url="/admin")
 def iframe_home(request):
-    """ Página inicial do sistema em si """
+    """ Página inicial no iframe """
 
     # Info sobre pedidos de fabricação
     pedidosFabricacao = models.Pedidofabricacao.objects.filter(
@@ -54,7 +68,7 @@ def iframe_home(request):
     )
 
     context = {
-        "fabricacaoPiece":"iframe/homePieces/fabricacaoDetail.html",
+        "fabricacaoPiece":"iframe/pieces/fabricacaoDetail.html",
         "pedidosFabricacao":pedidosFabricacao
     }
     return render(request, "iframe/home.html", context)

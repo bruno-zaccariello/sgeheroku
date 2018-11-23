@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 
 import core.models as model
 
+
 class CategoriaprodutoForm(forms.ModelForm):
     """ Formulário de Categoria de Produto """
 
@@ -297,7 +298,8 @@ class PedidofabricacaoForm(forms.ModelForm):
         queryset=model.Formulaproduto.objects.filter(hide=False))
     fkid_statusfabricacao = forms.ModelChoiceField(
         label="Status",
-        queryset=model.Statusfabricacao.objects.filter(hide=False).order_by('order'),
+        queryset=model.Statusfabricacao.objects.filter(
+            hide=False).order_by('order'),
         initial=0)
     lote = forms.CharField(label='Lote', max_length=8)
     quantidade = forms.FloatField(label='Quantidade a Produzir')
@@ -329,12 +331,16 @@ class PedidofabricacaoForm(forms.ModelForm):
         fields = ['fkid_formula', 'fkid_statusfabricacao',
                   'quantidade', 'dt_fim_maturacao', 'lote']
 
+
 class PedidoVendaForm(forms.ModelForm):
     """ Formulário do pedido de venda """
 
     fkid_cliente = forms.ModelChoiceField(
         label="Cliente",
-        queryset=model.Pessoa.objects.filter(hide=False),
+        queryset=model.Pessoa.objects.filter(
+            hide=False,
+            cliente=True
+        ),
     )
     fkid_formapag = forms.ModelChoiceField(
         label="Forma de Pagamento",
@@ -343,7 +349,9 @@ class PedidoVendaForm(forms.ModelForm):
     )
     fkid_status = forms.ModelChoiceField(
         label="Status do Pedido",
-        queryset=model.Statusvenda.objects.all(),
+        queryset=model.Statusvenda.objects.all().order_by(
+            'order'
+        ),
         initial=0
     )
     dt_preventrega = forms.DateTimeField(
@@ -374,12 +382,51 @@ class PedidoVendaForm(forms.ModelForm):
     class Meta:
         model = model.Pedidovenda
         fields = ['fkid_cliente', 'fkid_status', 'fkid_formapag',
-         'dt_preventrega', 'pago', 'dt_pagamento']
+                  'dt_preventrega', 'pago', 'dt_pagamento']
+
 
 class ItemVendaForm(forms.ModelForm):
     """ Formulário de item de venda """
 
+    fkid_produto = forms.ModelChoiceField(
+        label="Produto",
+        queryset=model.Produto.objects.filter(
+            hide=False
+        )
+    )
+    quantidade = forms.FloatField(
+        label="Quantidade"
+    )
+    vl_unitario = forms.DecimalField(
+        label="Valor Unitário"
+    )
+    vl_total = forms.DecimalField(
+        label="Valor Total",
+        widget=forms.NumberInput(attrs={'readonly':True})
+    )
+
     class Meta:
         model = model.Itemvenda
         fields = ['fkid_produto', 'quantidade', 'vl_unitario',
-                'vl_total']
+                  'vl_total']
+
+
+class FornecedorForm(forms.ModelForm):
+    genero_choices = (('F', 'Fisica'), ('J', 'Juridica'), ('O', 'Outro'))
+
+    nomecompleto_razaosocial = forms.CharField(
+        label="Razao Social", max_length=150)
+    apelido_nomefantasia = forms.CharField(
+        label="Nome Fantasia", required=False, max_length=150)
+    email = forms.EmailField(label="E-mail", required=False)
+    cpf_cnpj = lf.BRCNPJField(label="CNPJ")
+    rg_ie = forms.CharField(label="Inscrição Estadual", required=False, max_length=50)
+    dt_nascimento = forms.DateField(
+        label="Data Abertura", required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+    genero = forms.CharField(label="Fisica Juridica", widget=forms.Select(
+        choices=genero_choices), initial=0)
+
+    class Meta:
+        model = model.Pessoa
+        fields = ['nomecompleto_razaosocial', 'apelido_nomefantasia',
+                  'email', 'cpf_cnpj', 'rg_ie', 'dt_nascimento', 'genero']

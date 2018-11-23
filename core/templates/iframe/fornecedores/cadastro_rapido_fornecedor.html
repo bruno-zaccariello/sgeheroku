@@ -1,15 +1,14 @@
 <html>
 <head>
-	<title id="iframe_title">SGE - Cadastrar Cliente</title>
+	<title id="iframe_title">SGE - Cadastrar Fornecedor</title>
 	
 	<link rel="stylesheet"  type="text/css" href="/static/css/site.css"/>
     <link rel="stylesheet"  type="text/css" href="/static/css/patterns/cadastro.css"/>
 
-	<link rel="stylesheet"  type="text/css" href="/static/css/iframe/clientes/cadastrar_cliente.css"/>
+	<link rel="stylesheet"  type="text/css" href="/static/css/iframe/fornecedores/cadastrar_fornecedor.css"/>
 
     <script src="/static/jquery/jquery-3.3.1.min.js"></script>
     <script src="/static/jquery/jquery.mask.min.js"></script>
-	<script src="/static/js/utils.js"></script>
 </head>
 
 <body>
@@ -21,10 +20,10 @@
 		</div>
 		
 		<div class="overlay_content">
-			<h2 class="overlay_title">CLIENTE CADASTRADO COM SUCESSO</h2>
+			<h2 class="overlay_title">FORNECEDOR CADASTRADO COM SUCESSO</h2>
 			
 			<div class="bt_wrapper">
-				<a href="{% url 'cadastro_rapido_cliente' %}"><button class="btMain btConfirmar">Continuar</button></a>
+				<a href="{% url 'cadastro_rapido_fornecedor' %}"><button class="btMain btConfirmar">Continuar</button></a>
 			</div>
 			
 		</div>
@@ -32,13 +31,13 @@
 	{% endif %}
 	
 	<section class="content">
-		<div>
+		<div class="formContainer">
 			<form method="POST" enctype="multipart/form-data" autocomplete="off">
                 
 				<div class="formInputContainer">
                 
 				{% csrf_token %}
-				{% for field in pessoaForm %}
+				{% for field in fornecedorForm %}
 					<div class="fieldDiv">
 						<div class="formInput">
 							<div class="label">{{field.label_tag}}</div>
@@ -58,6 +57,7 @@
 		</div>
 	</section>
 
+	<script src="/static/js/iframe/fornecedores/cadastrar_fornecedor.js"></script>
     <script src="/static/js/formsFixes.js"></script>
 
 </body>

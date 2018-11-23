@@ -423,8 +423,12 @@ class Pessoa(models.Model):
         'Data de Nascimento', blank=True, null=True)
     st_pessoajuridica = models.BooleanField(
         'Pessoa Jurídica', max_length=1, default=0)
-    tipopessoa = models.CharField(
-        'Tipo da Pessoa', max_length=15, null=False, blank=False)
+    cliente = models.BooleanField(
+        'Cliente', default=0
+    )
+    fornecedor = models.BooleanField(
+        'Fornecedor', default=0
+    )
     hide = models.BooleanField(default=0)
 
     def __str__(self):
@@ -506,7 +510,12 @@ class Statusvenda(models.Model):
     """ Status de venda """
 
     pkid_status = models.AutoField(primary_key=True)
+    order = models.IntegerField("Ordem")
     descricao = models.CharField(max_length=100, blank=True, null=True)
+    hide = models.BooleanField(default=0)
+
+    def makeOrder(self):
+        return Statusvenda.objects.order_by('-order').first().order + 1
 
     def __str__(self):
         return self.descricao
