@@ -51,9 +51,11 @@ urls_produtos = [
     path('categorias/', view.lista_categorias, name="lista_categorias"),
     path('categorias/deletar/<int:id_categoria>/',
          view.deletar_categoria, name="deletar_categoria"),
+    path('categorias/<int:id_categoria>/', view.editar_categoria, name="editar_categoria"),
     path('unidades/', view.lista_unidades, name="lista_unidades"),
     path('unidades/deletar/<int:id_unidade>/',
-         view.deletar_unidade, name="deletar_unidade")
+         view.deletar_unidade, name="deletar_unidade"),
+    path('unidades/<int:id_unidade>/', view.editar_unidade, name="editar_unidade")
 ]
 
 urls_producao = [
@@ -77,7 +79,8 @@ urls_vendas = [
 urls_fornecedores = [
     path('cadastrar/', view.cadastrar_fornecedor, name="cadastrar_fornecedor"),
     path('lista/', view.lista_fornecedores, name="lista_fornecedores"),
-    path('deletar/<int:id_fornecedor>/', view.deletar_fornecedor, name="deletar_fornecedor")
+    path('deletar/<int:id_fornecedor>/', view.deletar_fornecedor, name="deletar_fornecedor"),
+    path('<int:id_fornecedor>/', view.editar_fornecedor, name="editar_fornecedor"),
 ]
 
 api = [
@@ -89,7 +92,7 @@ api = [
 urlpatterns = [
     path('admindjango/', admin.site.urls),
     path('admin/', auth_views.LoginView.as_view(template_name='index.html'), name="login"),
-    path('logout/', auth_views.LogoutView),
+    path('logout/', auth_views.LogoutView.as_view(next_page="/")),
     path('admin/home/', view.home, name="home"),
     path('', view.redirect_home),
     path('iframe/home/', view.iframe_home, name="iframe_home"),

@@ -7,10 +7,14 @@ label {
 
 input, select {
     border: 1px solid #777;
-    height: auto;
+    height: 30px;
     font-size: 15px;
     padding: 3px;
     width: 100%;
+}
+
+input[type=checkbox], input[type=radio] {
+    height: 20px;
 }
 
 select {
@@ -85,12 +89,4 @@ input.error-active:hover, select.error-active:hover, textarea.error-active:hover
 *.error-active, * > .error-active
 {
     border: 1px solid #AD0000;
-}
-
-.select2-container {
-    width: 200px;
-}
-
-.form-row td .select2-container {
-    width: 200px;
 }
