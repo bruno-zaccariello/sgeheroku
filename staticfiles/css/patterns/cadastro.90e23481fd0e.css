@@ -1,0 +1,111 @@
+.content {
+	width: 60%;
+}
+
+.fieldDiv {
+	width: 50%;
+	flex: 0 1 auto; 
+	padding: 10px;
+	justify-content: center;
+}
+
+.formInput {
+	margin: 0 auto;
+}
+
+.formInput * {
+	width: 100%;
+}
+
+.formInputContainer {
+	margin: auto auto;
+	padding: 15px;
+	width: 90%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.botaoContainer {
+	padding: 25px;
+	padding-top: 0;
+	padding-bottom: 0;
+	width: 90%;
+	margin: auto auto;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+}
+
+.overlay_bg {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.7;
+}
+
+.overlay_content {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 50%;
+	margin: auto auto;
+	position: fixed;
+	width: 40%;
+	height: 35%;
+	background-color: black;
+	border: 2px solid white;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+}
+
+.overlay_title {
+	text-align: center;
+	color: white;
+	font-size: 18px;
+}
+
+.overlay_content_success {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto auto;
+	position: fixed;
+	width: 35%;
+	height: 30%;
+	background-color: black;
+	border: 2px solid white;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+}
+
+.overlay_title_success {
+	text-align: center;
+	color: green;
+	font-size: 18px;
+}
+
+.bt_wrapper {
+	text-align: center;
+}
+
+.botao {
+	margin: auto 5px;
+	color: white;
+	width: 100px;
+	height: 30px;
+	background-color: black;
+	border: 2px solid white;
+	border-radius: 5px;
+	font-weight: 600;
+	font-size: 90%;
+	transition : 0.4s;
+}
