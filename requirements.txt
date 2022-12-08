@@ -2,7 +2,7 @@
 
 gunicorn==19.9.0
 django-heroku==0.3.1
-certifi==2018.10.15
+certifi==2022.12.7
 chardet==3.0.4
 Django==2.1.2
 django-localflavor==2.1
